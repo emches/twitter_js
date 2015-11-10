@@ -1,14 +1,19 @@
-var express = require( 'express' );
+var express = require('express');
+var chalk = require('chalk');
+var swig = require('swig');
 var app = express(); // creates an instance of an express application
 var port = 3000;
-
+var loggerMessage = chalk.bold.green;
+//Logging Middleware
+app.use(function(req, res, next){
+  console.log("Method: " + loggerMessage(req.method) + " Path: " + loggerMessage(req.path));
+  next();
+});
 
 
 app.get('/', function(req, res, next ){
-    console.log("REQ PATH: " + req.path )
-    //console.log(res.status(200).send("You got 200"))
-     res.send("HELLO WELCOME FRIEND")
-})
+  res.send("HELLO WELCOME FRIEND");
+});
 
 
 
@@ -18,4 +23,4 @@ app.get('/', function(req, res, next ){
 
 app.listen(port, function(){
     console.log("listening to port: " + port);
-})
+});

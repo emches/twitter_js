@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.13.3"
+    "chalk": "^1.1.1",
+    "express": "^4.13.3",
+    "swig": "^1.4.2"
   }
 }
