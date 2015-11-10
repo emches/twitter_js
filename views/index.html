@@ -7,12 +7,23 @@
     <h1>Welcome to Twitter.js, Nimit!</h1>
   </div>
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-4">
       <img src="https://pbs.twimg.com/profile_images/2450268678/olxp11gnt09no2y2wpsh_normal.jpeg"><br>
       <b>Your Name</b><br>
       100 followers
+      {% if showForm %}
+      <form action="/submit" method="POST">
+        <label for="name_field">Name:</label>
+        <input name="name" type="text" id="name_field" placeholder="Enter name" />
+        <br>
+        <label for="text_field">Text:</label>
+        <input name="text" type="text" id="text_field" style="width: 350px;" placeholder="Tweet..." />
+
+        <input type="submit" value="Submit" />
+      </form>
+    {% endif %}
     </div>
-    <div class="col-md-9">
+    <div class="col-md-8">
       <h1>All Tweets</h1>
       <!-- display tweets here -->
       {% for tweet in tweets %}

@@ -5,6 +5,7 @@ var tweetBank = require('../tweetBank');
 var fs = require('fs');
 var path = require('path');
 
+
 router.use(function(req, res, next){
     filePath = path.join(__dirname, '../public', req.path);
     var checkFile = fs.lstat(filePath, function(err, stats){
@@ -17,7 +18,7 @@ router.use(function(req, res, next){
 
 router.get('/', function (req, res) {
   var tweets = tweetBank.list();
-  res.render( 'index', { title: 'Twitter.js', tweets: tweets } );
+  res.render( 'index', { title: 'Twitter.js', tweets: tweets, showForm: true  } );
 });
 
 router.get('/users/:name', function(req, res) {
@@ -32,6 +33,15 @@ router.get('/users/:name/tweets/:id', function(req, res){
   var tweets = tweetBank.find({id: parseInt(tweetId)});
   res.render( 'index', { title: 'Twitter.js - Posted by '+name, tweets: tweets } );
 });
+
+router.post('/submit', function(req, res){
+  var name = req.body.name;
+  var text = req.body.text;
+  console.log("Name: " + name + " Text: " + text);
+  tweetBank.add(name, text);
+  res.redirect('/');
+});
+
 // router.get('/stylesheets/style.css', function(req,res){
 //   res.sendFile('../public/stylesheets/style.css');
 // })
