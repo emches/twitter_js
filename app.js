@@ -1,10 +1,11 @@
-var express = require('express');
 var chalk = require('chalk');
 var swig = require('swig');
+var express = require('express');
 var app = express(); // creates an instance of an express application
 var port = 3000;
 var loggerMessage = chalk.bold.green;
-var people = [{name: 'Mark Waldron'}, {name: 'Emily Chesler'}, {name: 'David Yang'}, {name: 'Nimit Maru'}, {name: 'Victor Hom'}];
+var routes = require('./routes/');
+app.use('/', routes);
 
 // Logging Middleware
 app.use(function(req, res, next){
@@ -18,10 +19,6 @@ app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 swig.setDefaults({ cache: false });
 
-// Handles root route, renders index template
-app.get('/', function (req, res) {
-  res.render('index', {title: 'Hall of Fame', people: people});
-});
 
 // Starts server on specified port
 app.listen(port, function(){
