@@ -16,7 +16,7 @@
       <h1>All Tweets</h1>
       <!-- display tweets here -->
       {% for tweet in tweets %}
-        <b>{{tweet.name}}</b>
+        <b><a href="/users/{{tweet.name}}">{{tweet.name}}</a> - {{tweet.text}}</b>
         <p>{{tweet.text}}<br>
         <a href="#">Re-tweet</a></p>
       {% endfor %}
