@@ -17,20 +17,21 @@ router.use(function(req, res, next){
 
 router.get('/', function (req, res) {
   var tweets = tweetBank.list();
-  console.log(tweets);
   res.render( 'index', { title: 'Twitter.js', tweets: tweets } );
 });
 
 router.get('/users/:name', function(req, res) {
   var name = req.params.name;
-  var list = tweetBank.list();
-  var userList = list.filter(function(item){
-    return item.name === name;
-  });
-  console.log(userList);
-  res.render( 'index', { title: 'Twitter.js - Posts by '+name, tweets: userList } );
+  var tweets = tweetBank.find({name: name});
+  res.render( 'index', { title: 'Twitter.js - Posts by '+name, tweets: tweets } );
 });
 
+router.get('/users/:name/tweets/:id', function(req, res){
+  var tweetId = req.params.id;
+  var name = req.params.name;
+  var tweets = tweetBank.find({id: parseInt(tweetId)});
+  res.render( 'index', { title: 'Twitter.js - Posted by '+name, tweets: tweets } );
+});
 // router.get('/stylesheets/style.css', function(req,res){
 //   res.sendFile('../public/stylesheets/style.css');
 // })
