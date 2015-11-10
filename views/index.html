@@ -26,11 +26,13 @@
     <div class="col-md-8">
       <h1>All Tweets</h1>
       <!-- display tweets here -->
-      {% for tweet in tweets %}
-        <b><a href="/users/{{tweet.name}}">{{tweet.name}}</a> - {{tweet.text}}</b>
-        <p>{{tweet.text}}<br>
-        <a href="#">Re-tweet</a></p>
-      {% endfor %}
+      <div id="tweets">
+        {% for tweet in tweets %}
+          <b><a href="/users/{{tweet.name}}">{{tweet.name}}</a> - {{tweet.text}}</b>
+          <p>{{tweet.text}}<br>
+          <a href="#">Re-tweet</a></p>
+        {% endfor %}        
+      </div>
 
     </div>
   </div>
